@@ -4,3 +4,8 @@ Extending the Spark ML examples to a real world text dataset. You never see thes
 
 This example runs on the UCI Machine Learning repo dataset found here: <br>
 https://archive.ics.uci.edu/ml/datasets/SMS+Spam+Collection
+
+<br>
+
+Be careful to clean non-printing characters from the dataset first. <br>
+
