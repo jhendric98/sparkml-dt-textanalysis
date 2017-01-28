@@ -1,12 +1,13 @@
 import org.apache.log4j.{Level, LogManager}
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.{SQLContext, UserDefinedFunction}
+import org.apache.spark.sql.{SQLContext}
 import org.apache.spark.sql.types.{StringType, StructField, StructType}
 import org.apache.spark.sql.functions._
 import org.apache.spark.ml.feature.{HashingTF, IDF, Tokenizer}
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.classification.DecisionTreeClassifier
 import org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer}
+
 
 /**
   * Spark ML Decision Tree classifier example
@@ -19,7 +20,7 @@ object sparkml_dt_textanalysis {
   def main(args: Array[String]): Unit = {
     val sparkConf: SparkConf = new SparkConf()
       .setAppName("assemblyexample")
-      .setMaster("local[*]") //comment this line for cluster runs
+//      .setMaster("local[*]") //comment this line for cluster runs
 
     val sc = new SparkContext(sparkConf)
     val sqlContext: SQLContext = new SQLContext(sc)
@@ -38,7 +39,7 @@ object sparkml_dt_textanalysis {
       .schema(dataSchema)
       .option("header", "false")
       .option("delimiter", "\t")
-      .load("data/SMSSpam.tsv")
+      .load("gs://tutorsmsspam/data/SMSSpam.tsv")
 
     val createLabel = udf((term: String) => {
       if ( term =="ham" ) 0.0
