@@ -9,11 +9,10 @@ import org.apache.spark.ml.classification.DecisionTreeClassifier
 import org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer}
 
 /**
-  * Sample Spark Assembly example template for Spark on YARN
-  *   Created for use in IntelliJ for developing Spark applications.
-  *
-  *   This code is free for use. If you find issues, have questions, or
-  *   have a suggestion to improve please contact me.
+  * Spark ML Decision Tree classifier example
+  * Extended from the documentation and set on a real world example.
+  * It is a binary classification of whether an SMS message is SPAM or not.
+  * See readme for data source.
   *
   */
 object sparkml_dt_textanalysis {
