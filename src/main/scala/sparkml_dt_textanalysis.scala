@@ -61,16 +61,21 @@ object sparkml_dt_textanalysis {
 
 
     // encode the data using TF/IDF
-    val tokenizer = new Tokenizer().setInputCol("cleansms").setOutputCol("words")
+    val tokenizer = new Tokenizer()
+      .setInputCol("cleansms")
+      .setOutputCol("words")
     val wordsData = tokenizer.transform(dataDF)
 
 
     val hashingTF = new HashingTF()
-      .setInputCol("words").setOutputCol("rawFeatures").setNumFeatures(1000)
-
+      .setInputCol("words")
+      .setOutputCol("rawFeatures")
+      .setNumFeatures(1000)
     val featurizedData = hashingTF.transform(wordsData)
 
-    val idf = new IDF().setInputCol("rawFeatures").setOutputCol("features")
+    val idf = new IDF()
+      .setInputCol("rawFeatures")
+      .setOutputCol("features")
     val idfModel = idf.fit(featurizedData)
 
     val readyDF = idfModel.transform(featurizedData)
@@ -82,6 +87,7 @@ object sparkml_dt_textanalysis {
       .setInputCol("rawlabel")
       .setOutputCol("indexedLabel")
       .fit(readyDF)
+
     // Automatically identify categorical features, and index them.
     val featureIndexer = new VectorIndexer()
       .setInputCol("features")

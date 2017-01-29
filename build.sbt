@@ -11,8 +11,8 @@ libraryDependencies += "com.databricks" % "spark-csv_2.11" % "1.5.0"
 libraryDependencies += "com.github.scopt" % "scopt_2.11" % "3.5.0"
 
 // Spark import for local run
-//libraryDependencies += "org.apache.spark" % "spark-core_2.10" % "1.6.1"
-//libraryDependencies += "org.apache.spark" % "spark-mllib_2.10" % "1.6.1"
+//libraryDependencies += "org.apache.spark" % "spark-core_2.11" % "2.0.2"
+//libraryDependencies += "org.apache.spark" % "spark-mllib_2.11" % "2.0.2"
 
 
 // Spark import for cluster run
