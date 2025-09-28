@@ -1,0 +1,16 @@
+[project]
+name = "sparkml-dt-textanalysis-tools"
+version = "0.1.0"
+description = "Helper scripts for the Spark ML Decision Tree SMS spam example"
+readme = "README.md"
+authors = [{ name = "Maintainers" }]
+requires-python = ">=3.9"
+dependencies = [
+  "requests>=2.31.0"
+]
+
+[project.scripts]
+download-sms-spam = "scripts.download_dataset:main"
+
+[tool.uv]
+index-url = "https://pypi.org/simple"
