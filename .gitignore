@@ -65,3 +65,7 @@ project/plugins/project/
 /.idea/
 /project/project/
 /project/target/
+# Python/uv artefacts
+/.venv/
+/uv.lock
+/data/
