@@ -6,8 +6,8 @@ This guide explains how to run all code quality checks locally before pushing to
 
 Ensure you have the following installed:
 
-- **Java 11+**: Required for Scala/sbt
-- **sbt 1.9+**: Scala build tool
+- **Java 17+**: Required for Scala/sbt (LTS version)
+- **sbt 1.10+**: Scala build tool
 - **Python 3.9+**: For Python utilities
 - **uv**: Python package manager
 
@@ -16,8 +16,8 @@ Ensure you have the following installed:
 #### macOS (using Homebrew)
 
 ```bash
-# Install Java 11
-brew install openjdk@11
+# Install Java 17
+brew install openjdk@17
 
 # Install sbt
 brew install sbt
@@ -29,9 +29,9 @@ brew install uv
 #### Linux (Ubuntu/Debian)
 
 ```bash
-# Install Java 11
+# Install Java 17
 sudo apt-get update
-sudo apt-get install openjdk-11-jdk
+sudo apt-get install openjdk-17-jdk
 
 # Install sbt
 echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
@@ -46,8 +46,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 #### Windows (using Chocolatey)
 
 ```powershell
-# Install Java 11
-choco install openjdk11
+# Install Java 17
+choco install openjdk17
 
 # Install sbt
 choco install sbt

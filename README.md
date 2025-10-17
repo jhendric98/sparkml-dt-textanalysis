@@ -3,8 +3,9 @@
 [![CI](https://github.com/jhendric98/sparkml-dt-textanalysis/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/sparkml-dt-textanalysis/actions/workflows/ci.yml)
 [![Code Quality](https://github.com/jhendric98/sparkml-dt-textanalysis/actions/workflows/code-quality.yml/badge.svg)](https://github.com/YOUR_USERNAME/sparkml-dt-textanalysis/actions/workflows/code-quality.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Scala Version](https://img.shields.io/badge/scala-2.12.18-red.svg)](https://scala-lang.org/)
-[![Spark Version](https://img.shields.io/badge/spark-3.5.1-orange.svg)](https://spark.apache.org/)
+[![Java Version](https://img.shields.io/badge/java-17-blue.svg)](https://openjdk.org/)
+[![Scala Version](https://img.shields.io/badge/scala-2.12.19-red.svg)](https://scala-lang.org/)
+[![Spark Version](https://img.shields.io/badge/spark-3.5.3-orange.svg)](https://spark.apache.org/)
 
 This project demonstrates how to train and evaluate a binary Decision Tree classifier on the [SMS Spam Collection](https://archive.ics.uci.edu/ml/datasets/SMS+Spam+Collection) dataset using Apache Spark ML. The example has been modernised to use the Spark 3.x API, provides command-line configuration, and includes tooling to download and prepare the dataset locally.
 
@@ -22,15 +23,15 @@ This project demonstrates how to train and evaluate a binary Decision Tree class
 ### Development & Quality Assurance
 
 - **Code Quality**: Scalafmt and Scalafix for Scala, Black/flake8/mypy for Python
-- **CI/CD Pipeline**: Automated testing on Java 11, code quality checks, security scanning
+- **CI/CD Pipeline**: Automated testing on Java 17, code quality checks, security scanning
 - **Automated Releases**: GitHub releases with semantic versioning
 - **Dependency Management**: Dependabot for automated security updates
 - **Comprehensive Documentation**: Contributing guidelines, issue templates, security policy
 
 ## Requirements
 
-- Java 11+
-- [sbt](https://www.scala-sbt.org/) 1.9+
+- Java 17+
+- [sbt](https://www.scala-sbt.org/) 1.10+
 - Apache Spark 3.5 runtime (cluster provided libraries or local install)
 - [uv](https://github.com/astral-sh/uv) 0.2+ (for optional dataset utilities)
 
@@ -93,6 +94,7 @@ Run `spark-submit ... --help` to see the generated usage information.
 
 - `docs/CODE_ANALYSIS.md` – architectural and code analysis notes covering the processing pipeline
 - `docs/LOCAL_DEVELOPMENT.md` – guide for running code quality checks locally
+- `docs/UPGRADE_TO_JAVA17.md` – migration guide for Java 17 upgrade
 - `docs/GITHUB_COMPLIANCE_SUMMARY.md` – comprehensive overview of implemented GitHub best practices
 - `docs/BRANCH_PROTECTION.md` – guidelines for configuring repository security settings
 - `CONTRIBUTING.md` – contribution guidelines and development workflow
@@ -186,7 +188,7 @@ git push origin v1.2.0
 - The Spark log level is reduced to `WARN` for clarity; adjust it by editing `SparkMlDecisionTreeApp` if you need detailed logs.
 - The dataset loader drops malformed rows automatically; if you need stricter validation customise the `normaliseText` and `labelToDouble` UDFs.
 - Consider experimenting with alternative feature transformers (e.g. `CountVectorizer`) or model types by extending the existing pipeline.
-- All pull requests are automatically tested on Java 11 to ensure compatibility with Spark 3.5.
+- All pull requests are automatically tested on Java 17 to ensure compatibility with Spark 3.5.
 
 ## Security
 

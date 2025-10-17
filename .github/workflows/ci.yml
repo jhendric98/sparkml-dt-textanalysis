@@ -13,7 +13,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    name: Test (Java 11, Scala 2.12.18)
+    name: Test (Java 17, Scala 2.12.19)
     
     steps:
     - name: Checkout code
@@ -23,7 +23,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '11'
+        java-version: '17'
         cache: 'sbt'
         
     - name: Install sbt
