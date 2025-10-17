@@ -1,7 +1,7 @@
 # Spark ML Decision Tree SMS Spam Classifier
 
-[![CI](https://github.com/YOUR_USERNAME/sparkml-dt-textanalysis/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/sparkml-dt-textanalysis/actions/workflows/ci.yml)
-[![Code Quality](https://github.com/YOUR_USERNAME/sparkml-dt-textanalysis/actions/workflows/code-quality.yml/badge.svg)](https://github.com/YOUR_USERNAME/sparkml-dt-textanalysis/actions/workflows/code-quality.yml)
+[![CI](https://github.com/jhendric98/sparkml-dt-textanalysis/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/sparkml-dt-textanalysis/actions/workflows/ci.yml)
+[![Code Quality](https://github.com/jhendric98/sparkml-dt-textanalysis/actions/workflows/code-quality.yml/badge.svg)](https://github.com/YOUR_USERNAME/sparkml-dt-textanalysis/actions/workflows/code-quality.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Scala Version](https://img.shields.io/badge/scala-2.12.18-red.svg)](https://scala-lang.org/)
 [![Spark Version](https://img.shields.io/badge/spark-3.5.1-orange.svg)](https://spark.apache.org/)
