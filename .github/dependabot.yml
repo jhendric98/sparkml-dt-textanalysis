@@ -1,25 +1,5 @@
 version: 2
 updates:
-  # Enable version updates for sbt dependencies
-  - package-ecosystem: "sbt"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-    open-pull-requests-limit: 5
-    reviewers:
-      - "maintainer"
-    assignees:
-      - "maintainer"
-    commit-message:
-      prefix: "deps"
-      prefix-development: "deps-dev"
-      include: "scope"
-    labels:
-      - "dependencies"
-      - "scala"
-
   # Enable version updates for Python dependencies
   - package-ecosystem: "pip"
     directory: "/"
@@ -28,10 +8,6 @@ updates:
       day: "monday"
       time: "09:00"
     open-pull-requests-limit: 5
-    reviewers:
-      - "maintainer"
-    assignees:
-      - "maintainer"
     commit-message:
       prefix: "deps"
       prefix-development: "deps-dev"
@@ -48,10 +24,6 @@ updates:
       day: "monday"
       time: "09:00"
     open-pull-requests-limit: 5
-    reviewers:
-      - "maintainer"
-    assignees:
-      - "maintainer"
     commit-message:
       prefix: "ci"
       include: "scope"
