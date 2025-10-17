@@ -20,7 +20,6 @@ Configure the following settings for the `main` branch in GitHub repository sett
 - ✅ **Require branches to be up to date before merging**
 - **Required status checks:**
   - `Test (Java 11, Scala 2.12.18)`
-  - `Test (Java 17, Scala 2.12.18)`
   - `Linting and Formatting`
   - `Security Scan`
   - `Dependency Review` (for PRs)

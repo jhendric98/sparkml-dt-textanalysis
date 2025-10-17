@@ -22,7 +22,7 @@ This project demonstrates how to train and evaluate a binary Decision Tree class
 ### Development & Quality Assurance
 
 - **Code Quality**: Scalafmt and Scalafix for Scala, Black/flake8/mypy for Python
-- **CI/CD Pipeline**: Automated testing on Java 11 & 17, code quality checks, security scanning
+- **CI/CD Pipeline**: Automated testing on Java 11, code quality checks, security scanning
 - **Automated Releases**: GitHub releases with semantic versioning
 - **Dependency Management**: Dependabot for automated security updates
 - **Comprehensive Documentation**: Contributing guidelines, issue templates, security policy
@@ -92,6 +92,7 @@ Run `spark-submit ... --help` to see the generated usage information.
 ### Documentation
 
 - `docs/CODE_ANALYSIS.md` – architectural and code analysis notes covering the processing pipeline
+- `docs/LOCAL_DEVELOPMENT.md` – guide for running code quality checks locally
 - `docs/GITHUB_COMPLIANCE_SUMMARY.md` – comprehensive overview of implemented GitHub best practices
 - `docs/BRANCH_PROTECTION.md` – guidelines for configuring repository security settings
 - `CONTRIBUTING.md` – contribution guidelines and development workflow
@@ -144,6 +145,8 @@ uv run flake8 scripts/     # Check Python linting
 uv run mypy scripts/       # Type checking
 ```
 
+**📖 For detailed instructions on running checks locally, see [docs/LOCAL_DEVELOPMENT.md](docs/LOCAL_DEVELOPMENT.md)**
+
 ### Development Workflow
 
 1. **Fork and clone** the repository
@@ -183,7 +186,7 @@ git push origin v1.2.0
 - The Spark log level is reduced to `WARN` for clarity; adjust it by editing `SparkMlDecisionTreeApp` if you need detailed logs.
 - The dataset loader drops malformed rows automatically; if you need stricter validation customise the `normaliseText` and `labelToDouble` UDFs.
 - Consider experimenting with alternative feature transformers (e.g. `CountVectorizer`) or model types by extending the existing pipeline.
-- All pull requests are automatically tested on Java 11 and 17 to ensure compatibility.
+- All pull requests are automatically tested on Java 11 to ensure compatibility with Spark 3.5.
 
 ## Security
 

@@ -45,7 +45,7 @@ git clone https://github.com/YOUR_USERNAME/sparkml-dt-textanalysis.git
 cd sparkml-dt-textanalysis
 
 # Install Python dependencies
-uv sync
+uv sync --extra dev
 
 # Build the project
 sbt clean compile
@@ -54,11 +54,16 @@ sbt clean compile
 sbt test
 
 # Format code
-sbt scalafmtAll
+sbt fmt          # Formats Scala code
+uv run black scripts/  # Formats Python code
 
 # Run linters
-sbt scalafix
+sbt fixCheck     # Check Scala linting
+uv run flake8 scripts/  # Check Python linting
+uv run mypy scripts/    # Python type checking
 ```
+
+**📖 For comprehensive local development instructions, see [docs/LOCAL_DEVELOPMENT.md](docs/LOCAL_DEVELOPMENT.md)**
 
 ## Coding Standards
 
