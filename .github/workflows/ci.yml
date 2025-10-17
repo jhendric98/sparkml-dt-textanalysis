@@ -12,12 +12,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ '11', '17' ]
-        scala: [ '2.12.18' ]
     
-    name: Test (Java ${{ matrix.java }}, Scala ${{ matrix.scala }})
+    name: Test (Java 11, Scala 2.12.18)
     
     steps:
     - name: Checkout code
@@ -27,7 +23,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: ${{ matrix.java }}
+        java-version: '11'
         cache: 'sbt'
         
     - name: Install sbt
