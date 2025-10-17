@@ -2,19 +2,18 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches:
+      - '**'  # Run on push to any branch
   pull_request:
-    branches: [ main, develop ]
+    branches:
+      - main
+      - develop
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ '11', '17' ]
-        scala: [ '2.12.18' ]
     
-    name: Test (Java ${{ matrix.java }}, Scala ${{ matrix.scala }})
+    name: Test (Java 11, Scala 2.12.18)
     
     steps:
     - name: Checkout code
@@ -24,8 +23,15 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: ${{ matrix.java }}
+        java-version: '11'
         cache: 'sbt'
+        
+    - name: Install sbt
+      run: |
+        echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
+        curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x99E82A75642AC823" | sudo apt-key add
+        sudo apt-get update
+        sudo apt-get install sbt
         
     - name: Setup Python
       uses: actions/setup-python@v4
