@@ -92,6 +92,7 @@ Run `spark-submit ... --help` to see the generated usage information.
 ### Documentation
 
 - `docs/CODE_ANALYSIS.md` – architectural and code analysis notes covering the processing pipeline
+- `docs/LOCAL_DEVELOPMENT.md` – guide for running code quality checks locally
 - `docs/GITHUB_COMPLIANCE_SUMMARY.md` – comprehensive overview of implemented GitHub best practices
 - `docs/BRANCH_PROTECTION.md` – guidelines for configuring repository security settings
 - `CONTRIBUTING.md` – contribution guidelines and development workflow
@@ -143,6 +144,8 @@ uv run black scripts/      # Format Python code
 uv run flake8 scripts/     # Check Python linting
 uv run mypy scripts/       # Type checking
 ```
+
+**📖 For detailed instructions on running checks locally, see [docs/LOCAL_DEVELOPMENT.md](docs/LOCAL_DEVELOPMENT.md)**
 
 ### Development Workflow
 
