@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ '11', '17' ]
+        scala: [ '2.12.18' ]
+    
+    name: Test (Java ${{ matrix.java }}, Scala ${{ matrix.scala }})
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: ${{ matrix.java }}
+        cache: 'sbt'
+        
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install uv
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: "latest"
+        
+    - name: Install Python dependencies
+      run: uv sync --extra dev
+      
+    - name: Check Scala formatting
+      run: sbt scalafmtCheckAll scalafmtSbtCheck
+      
+    - name: Run Scalafix checks
+      run: sbt "scalafix --check"
+      
+    - name: Compile Scala code
+      run: sbt compile
+      
+    - name: Run Scala tests
+      run: sbt test
+      
+    - name: Build assembly JAR
+      run: sbt assembly
+      
+    - name: Check Python formatting with Black
+      run: uv run black --check scripts/
+      
+    - name: Run Python linting with flake8
+      run: uv run flake8 scripts/
+      
+    - name: Run Python type checking with mypy
+      run: uv run mypy scripts/
+      
+    - name: Test Python script functionality
+      run: uv run python -m scripts.download_dataset --help
+
+  security:
+    runs-on: ubuntu-latest
+    name: Security Scan
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'

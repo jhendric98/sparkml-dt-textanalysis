@@ -1,0 +1,114 @@
+name: Performance Issue
+description: Report a performance problem or optimization opportunity
+title: "[Performance]: "
+labels: ["performance", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a performance issue! Please provide detailed information to help us investigate.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of the project are you using?
+      placeholder: "1.1.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Details
+      description: Please provide details about your environment
+      placeholder: |
+        - OS: [e.g. macOS 14.0, Ubuntu 22.04]
+        - Java Version: [e.g. OpenJDK 11.0.20]
+        - Spark Version: [e.g. 3.5.1]
+        - Cluster Setup: [e.g. local[*], Standalone, YARN, Kubernetes]
+        - Hardware: [e.g. CPU cores, RAM, storage type]
+    validations:
+      required: true
+
+  - type: textarea
+    id: dataset
+    attributes:
+      label: Dataset Information
+      description: Information about the dataset you're processing
+      placeholder: |
+        - Dataset size: [e.g. 100MB, 1GB, 10GB]
+        - Number of records: [e.g. 1M rows]
+        - Data format: [e.g. TSV, CSV, Parquet]
+        - Data characteristics: [e.g. average text length, class distribution]
+    validations:
+      required: true
+
+  - type: textarea
+    id: performance-issue
+    attributes:
+      label: Performance Issue Description
+      description: Describe the performance problem you're experiencing
+      placeholder: |
+        - What operation is slow?
+        - How long does it take?
+        - What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Configuration Used
+      description: Command line arguments and configuration used
+      placeholder: |
+        spark-submit \
+          --class SparkMlDecisionTreeApp \
+          --master local[*] \
+          --driver-memory 4g \
+          --executor-memory 2g \
+          target/scala-2.12/sparkml-dt-textanalysis-assembly-1.1.0.jar \
+          --input data/SMSSpam.tsv \
+          --test-fraction 0.25 \
+          --max-depth 6 \
+          --num-features 4096
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Performance Metrics
+      description: Any performance metrics you've collected
+      placeholder: |
+        - Execution time: [e.g. 5 minutes]
+        - Memory usage: [e.g. 8GB peak]
+        - CPU utilization: [e.g. 50% average]
+        - Spark UI metrics: [e.g. stage durations, shuffle data]
+
+  - type: textarea
+    id: profiling
+    attributes:
+      label: Profiling Information
+      description: Any profiling data or Spark UI screenshots
+      placeholder: |
+        - Spark UI screenshots
+        - JVM profiling results
+        - System monitoring data
+
+  - type: textarea
+    id: optimization-ideas
+    attributes:
+      label: Optimization Ideas
+      description: Any ideas you have for improving performance
+      placeholder: Potential optimizations or configurations to try...
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
+      placeholder: Other details that might help with the investigation...

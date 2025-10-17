@@ -9,8 +9,55 @@ dependencies = [
   "requests>=2.31.0"
 ]
 
+[project.optional-dependencies]
+dev = [
+  "black>=23.0.0",
+  "flake8>=6.0.0",
+  "mypy>=1.5.0",
+  "types-requests>=2.31.0"
+]
+
 [project.scripts]
 download-sms-spam = "scripts.download_dataset:main"
 
 [tool.uv]
 index-url = "https://pypi.org/simple"
+
+# Black configuration
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+# MyPy configuration
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = "scripts.*"
+ignore_missing_imports = true
