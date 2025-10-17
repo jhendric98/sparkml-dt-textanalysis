@@ -1,0 +1,91 @@
+name: Code Quality
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Linting and Formatting
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '11'
+        cache: 'sbt'
+        
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install uv
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: "latest"
+        
+    - name: Install Python dependencies
+      run: uv sync --extra dev
+      
+    - name: Check Scala formatting
+      run: sbt scalafmtCheckAll scalafmtSbtCheck
+      
+    - name: Run Scalafix
+      run: sbt "scalafix --check"
+      
+    - name: Check Python formatting
+      run: uv run black --check --diff scripts/
+      
+    - name: Run Python linting
+      run: uv run flake8 scripts/
+      
+    - name: Run Python type checking
+      run: uv run mypy scripts/
+      
+    - name: Comment PR with formatting suggestions
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## Code Quality Issues Found
+
+            This PR has code quality issues. Please run the following commands to fix them:
+
+            ### Scala
+            \`\`\`bash
+            sbt scalafmtAll  # Format Scala code
+            sbt scalafix     # Apply Scalafix rules
+            \`\`\`
+
+            ### Python
+            \`\`\`bash
+            uv run black scripts/     # Format Python code
+            uv run flake8 scripts/    # Check for linting issues
+            uv run mypy scripts/      # Check types
+            \`\`\`
+
+            Please fix these issues and push the changes.`
+          })
+
+  dependency-review:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Dependency Review
+      uses: actions/dependency-review-action@v4
+      with:
+        fail-on-severity: moderate
+        allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC
