@@ -1,4 +1,5 @@
 import org.apache.log4j.{Level, LogManager}
+
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.classification.DecisionTreeClassifier
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
@@ -7,13 +8,12 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.{col, length, udf}
 import org.apache.spark.sql.types.{StringType, StructField, StructType}
 
-/**
- * Entry point for the SMS spam classification example using Spark ML.
- *
- * The application trains a Decision Tree classifier on the SMS Spam Collection dataset.
- * It performs basic text cleaning, vectorisation using TF-IDF and reports
- * accuracy and F1 metrics on a hold-out test set.
- */
+/** Entry point for the SMS spam classification example using Spark ML.
+  *
+  * The application trains a Decision Tree classifier on the SMS Spam Collection dataset.
+  * It performs basic text cleaning, vectorisation using TF-IDF and reports
+  * accuracy and F1 metrics on a hold-out test set.
+  */
 object SparkMlDecisionTreeApp {
 
   private case class Config(
@@ -109,11 +109,13 @@ object SparkMlDecisionTreeApp {
           .getOrElse("")
       })
 
-      val labelToDouble = udf((label: String) => label match {
-        case "ham"  => 0.0
-        case "spam" => 1.0
-        case _       => 0.0
-      })
+      val labelToDouble = udf((label: String) =>
+        label match {
+          case "ham"  => 0.0
+          case "spam" => 1.0
+          case _      => 0.0
+        }
+      )
 
       val rawDf = spark.read
         .schema(schema)
@@ -163,8 +165,9 @@ object SparkMlDecisionTreeApp {
         .setOutputCol("predictedLabel")
         .setLabels(labelIndexerModel.labels)
 
-      val pipeline = new Pipeline()
-        .setStages(Array(labelIndexerModel, tokenizer, hashingTF, idf, decisionTree, labelConverter))
+      val pipeline = new Pipeline().setStages(
+        Array(labelIndexerModel, tokenizer, hashingTF, idf, decisionTree, labelConverter)
+      )
 
       val Array(trainingData, testData) = preparedDf.randomSplit(
         Array(1.0 - config.testFraction, config.testFraction),
