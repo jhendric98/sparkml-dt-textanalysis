@@ -46,7 +46,7 @@ def parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Overwrite the output file if it already exists.",
     )
-    return parser.parse_args(argv)
+    return parser.parse_args(list(argv) if argv else None)
 
 
 def download_archive() -> bytes:
@@ -58,7 +58,9 @@ def download_archive() -> bytes:
 def extract_tsv(archive: bytes) -> Iterable[tuple[str, str]]:
     with zipfile.ZipFile(io.BytesIO(archive)) as zf:
         with zf.open(ZIP_MEMBER) as member:
-            reader = csv.reader(io.TextIOWrapper(member, encoding="utf-8"), delimiter="\t")
+            reader = csv.reader(
+                io.TextIOWrapper(member, encoding="utf-8"), delimiter="\t"
+            )
             for row in reader:
                 if len(row) != 2:
                     continue

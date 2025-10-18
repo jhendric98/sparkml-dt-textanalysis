@@ -19,7 +19,7 @@ Configure the following settings for the `main` branch in GitHub repository sett
 - ✅ **Require status checks to pass before merging**
 - ✅ **Require branches to be up to date before merging**
 - **Required status checks:**
-  - `Test (Java 11, Scala 2.12.18)`
+  - `Test (Java 17, Scala 2.12.19)`
   - `Linting and Formatting`
   - `Security Scan`
   - `Dependency Review` (for PRs)
@@ -44,7 +44,7 @@ If using a `develop` branch, apply similar but slightly relaxed rules:
 ### Status Checks
 - ✅ **Require status checks to pass before merging**
 - **Required status checks:**
-  - `Test (Java 11, Scala 2.12.18)`
+  - `Test (Java 17, Scala 2.12.19)`
   - `Linting and Formatting`
 
 ## Repository Security Settings

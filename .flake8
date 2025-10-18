@@ -1,12 +1,6 @@
 [flake8]
 max-line-length = 88
-extend-ignore = 
-    # Black compatibility
-    E203,  # whitespace before ':'
-    E501,  # line too long (handled by black)
-    W503,  # line break before binary operator
-    # Additional ignores
-    E402,  # module level import not at top of file
+extend-ignore = E203,E501,W503,E402
 exclude = 
     .git,
     __pycache__,

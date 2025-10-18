@@ -32,8 +32,8 @@ Before creating an issue, please:
 
 #### Prerequisites
 
-- Java 11+
-- sbt 1.9+
+- Java 17+
+- sbt 1.10+
 - Apache Spark 3.5+ (for testing)
 - uv 0.2+ (for Python utilities)
 
