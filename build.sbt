@@ -1,14 +1,14 @@
-ThisBuild / name := "sparkml-dt-textanalysis"
-ThisBuild / version := "1.1.0"
-ThisBuild / scalaVersion := "2.12.18"
+ThisBuild / name         := "sparkml-dt-textanalysis"
+ThisBuild / version      := "1.1.0"
+ThisBuild / scalaVersion := "2.12.19"
 
 // Project metadata
-ThisBuild / organization := "com.example"
-ThisBuild / organizationName := "Spark ML Decision Tree Text Analysis"
+ThisBuild / organization         := "com.example"
+ThisBuild / organizationName     := "Spark ML Decision Tree Text Analysis"
 ThisBuild / organizationHomepage := Some(url("https://github.com/example/sparkml-dt-textanalysis"))
-ThisBuild / description := "SMS spam classification using Apache Spark ML Decision Trees"
-ThisBuild / licenses := List("MIT" -> url("https://opensource.org/licenses/MIT"))
-ThisBuild / homepage := Some(url("https://github.com/example/sparkml-dt-textanalysis"))
+ThisBuild / description          := "SMS spam classification using Apache Spark ML Decision Trees"
+ThisBuild / licenses             := List("MIT" -> url("https://opensource.org/licenses/MIT"))
+ThisBuild / homepage             := Some(url("https://github.com/example/sparkml-dt-textanalysis"))
 ThisBuild / scmInfo := Some(
   ScmInfo(
     url("https://github.com/example/sparkml-dt-textanalysis"),
@@ -24,25 +24,24 @@ ThisBuild / developers := List(
   )
 )
 
-lazy val sparkVersion = "3.5.1"
+lazy val sparkVersion = "3.5.3"
 
 libraryDependencies ++= Seq(
-  "org.apache.spark" %% "spark-sql" % sparkVersion % Provided,
+  "org.apache.spark" %% "spark-sql"   % sparkVersion % Provided,
   "org.apache.spark" %% "spark-mllib" % sparkVersion % Provided,
-  "com.github.scopt" %% "scopt" % "4.1.0"
+  "com.github.scopt" %% "scopt"       % "4.1.0"
 )
 
 // Assembly configuration
 assembly / assemblyJarName := s"${name.value}-assembly-${version.value}.jar"
 assembly / assemblyMergeStrategy := {
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard
-  case "application.conf" => MergeStrategy.concat
-  case "reference.conf" => MergeStrategy.concat
-  case _ => MergeStrategy.first
+  case "application.conf"            => MergeStrategy.concat
+  case "reference.conf"              => MergeStrategy.concat
+  case _                             => MergeStrategy.first
 }
 
 // Scalafmt and Scalafix integration
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 

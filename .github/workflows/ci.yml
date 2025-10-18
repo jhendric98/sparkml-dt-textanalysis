@@ -13,7 +13,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    name: Test (Java 11, Scala 2.12.18)
+    name: Test (Java 17, Scala 2.12.19)
     
     steps:
     - name: Checkout code
@@ -23,7 +23,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '11'
+        java-version: '17'
         cache: 'sbt'
         
     - name: Install sbt
@@ -34,12 +34,12 @@ jobs:
         sudo apt-get install sbt
         
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v6
       with:
         python-version: '3.9'
         
     - name: Install uv
-      uses: astral-sh/setup-uv@v2
+      uses: astral-sh/setup-uv@v7
       with:
         version: "latest"
         
@@ -90,7 +90,7 @@ jobs:
         output: 'trivy-results.sarif'
         
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v3
+      uses: github/codeql-action/upload-sarif@v4
       if: always()
       with:
         sarif_file: 'trivy-results.sarif'
